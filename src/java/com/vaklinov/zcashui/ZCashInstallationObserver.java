@@ -89,14 +89,14 @@ public class ZCashInstallationObserver
 		}
 
 		Log.info("Using Bitcoin Private daemon and rpc tools: " +
-		                   "zcld: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
-		                   "zcl-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
+		                   "btcpd: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
+		                   "btcp-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
 
 		if ((zcashd == null) || (zcashcli == null) || (!zcashd.exists()) || (!zcashcli.exists()))
 		{
 			throw new InstallationDetectionException(
 				"The Bitcoin Private Full-Node Desktop Wallet installation directory " + installDir + " needs\nto contain " +
-				"the command line utilities zcld and zcl-cli. At least one of them is missing! \n" +
+				"the command line utilities btcpd and btcp-cli. At least one of them is missing! \n" +
 				"Please place files BitcoinPrivateSwingWallet.jar, " + OSUtil.getZCashCli() + ", " +
 				OSUtil.getZCashd() + " in the same directory.");
 		}
@@ -121,7 +121,7 @@ public class ZCashInstallationObserver
 	private synchronized DaemonInfo getDaemonInfoForUNIXLikeOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForUNIXLikeOS("zcld");
+		return getDaemonInfoForUNIXLikeOS("btcpd");
 	}
 
 	// So far tested on Mac OS X and Linux - expected to work on other UNIXes as well
@@ -198,7 +198,7 @@ public class ZCashInstallationObserver
 	private synchronized DaemonInfo getDaemonInfoForWindowsOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForWindowsOS("zcld");
+		return getDaemonInfoForWindowsOS("btcpd");
 	}
 
 	public static synchronized DaemonInfo getDaemonInfoForWindowsOS(String daemonName)
@@ -245,7 +245,7 @@ public class ZCashInstallationObserver
 					{
 						info.status = DAEMON_STATUS.RUNNING;
 						foundZCash = true;
-						//System.out.println("zcl process data is: " + line);
+						//System.out.println("btcp process data is: " + line);
 					}
 				} else if ((i >= 4) && foundZCash)
 				{
