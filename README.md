@@ -102,7 +102,7 @@ rpcport=8023
 
 ### Notes from ZENCash - Known Issues and Limitations
 
-1. **Issue:** The Zclassic Desktop GUI Wallet is not compatible with applications that modify the BTCP `wallet.dat` file. The wallet should not be used
+1. **Issue:** The Bitcoin Private Desktop GUI Wallet is not compatible with applications that modify the BTCP `wallet.dat` file. The wallet should not be used
 with such applications on the same PC. For instance some distributed exchange applications are known to create watch-only addresses in the
 `wallet.dat` file that cause the GUI wallet to display a wrong balance and/or display addresses that do not belong to the wallet.
 1. **Limitation:** if two users exchange text messages via the messaging UI TAB and one of them has a system clock, substantially running slow or fast by more than 1 minute, it is possible that this user will see text messages appearing out of order.
