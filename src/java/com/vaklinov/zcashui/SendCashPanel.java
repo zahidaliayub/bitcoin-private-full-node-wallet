@@ -252,7 +252,8 @@ extends WalletTabPanel
 		sendButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
-			{
+			{			//disable btcp send until after fork
+				/*
 				try
 				{
 					SendCashPanel.this.sendCash();
@@ -273,7 +274,7 @@ extends WalletTabPanel
 									"Please check that the Zclassic daemon is running and\n" +
 									"the sending parameters are correct.\n",
 									"Error Sending ZCL", JOptionPane.ERROR_MESSAGE);
-				}
+				}*/
 			}
 		});
 
