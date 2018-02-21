@@ -359,7 +359,8 @@ extends JFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						ZCashUI.this.walletOps.importSinglePrivateKey();
+						//disable as unsafe for now
+						//ZCashUI.this.walletOps.importSinglePrivateKey();
 					}
 				}
 				);
