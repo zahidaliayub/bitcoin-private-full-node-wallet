@@ -73,8 +73,8 @@ Once you've built Bitcoin Private from source code, `btcpd` and `btcp-cli` will 
 You will need to copy them beside the jar, and rename them to `btcpd` and `btcp-cli`:
 
 ```
-cp ~/bitcoinprivate/src/zcashd build/jars/btcpd
-cp ~/bitcoinprivate/src/zcash-cli build/jars/btcp-cli
+cp ~/bitcoinprivate/src/btcpd build/jars/btcpd
+cp ~/bitcoinprivate/src/btcp-cli build/jars/btcp-cli
 ```
 
 You can now run the Desktop GUI Wallet:
