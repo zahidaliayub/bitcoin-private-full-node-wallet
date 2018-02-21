@@ -79,7 +79,7 @@ import com.vaklinov.zcashui.msg.MessagingPanel;
 
 
 /**
- * Main Zclassic Window.
+ * Main Bitcoin Private Window.
  *
  * @author Ivan Vaklinov <ivan@vaklinov.com>
  */
@@ -120,7 +120,7 @@ extends JFrame
 	public ZCashUI(StartupProgressDialog progressDialog)
 			throws IOException, InterruptedException, WalletCallException
 	{
-		super("Zclassic Desktop GUI Wallet 1.0.0");
+		super("Bitcoin Private Desktop GUI Wallet 1.0.0");
 
 		if (progressDialog != null)
 		{
@@ -129,7 +129,7 @@ extends JFrame
 
 		ClassLoader cl = this.getClass().getClassLoader();
 
-		this.setIconImage(new ImageIcon(cl.getResource("images/zclassic-logo.png")).getImage());
+		this.setIconImage(new ImageIcon(cl.getResource("images/btcp-logo.png")).getImage());
 		System.out.println(cl.getResource("config/addnodes.txt").getPath());
 
 		Container contentPane = this.getContentPane();
@@ -157,7 +157,7 @@ extends JFrame
 		tabs.addTab("My Addresses ",
 				new ImageIcon(cl.getResource("images/own-addresses.png")),
 				addresses = new AddressesPanel(this, clientCaller, errorReporter));
-		tabs.addTab("Send ZCL ",
+		tabs.addTab("Send BTCP ",
 				new ImageIcon(cl.getResource("images/send.png")),
 				sendPanel = new SendCashPanel(clientCaller, errorReporter, installationObserver, backupTracker));
 		tabs.addTab("Address Book ",
@@ -492,9 +492,9 @@ extends JFrame
 
 				JOptionPane.showMessageDialog(
 						ZCashUI.this.getRootPane().getParent(),
-						"The Zclassic Full-Node Desktop Wallet is currently considered experimental. Use of this software\n" +
+						"The Bitcoin Private Full-Node Desktop Wallet is currently considered experimental. Use of this software\n" +
 								"comes at your own risk! Be sure to read the list of known issues and limitations\n" +
-								"at this page: https://github.com/z-classic/zclassic-full-node-wallet\n\n" +
+								"at this page: https://github.com/BTCPrivate/bitcoin-private-full-node-wallet\n\n" +
 								"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n" +
 								"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n" +
 								"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n" +
@@ -560,7 +560,7 @@ extends JFrame
 				possiblyCreateZENConfigFile();
 			}
 
-			Log.info("Zclassic Full-Node Desktop Wallet (GUI, made in Java & Swing)");
+			Log.info("Bitcoin Private Full-Node Desktop Wallet (GUI, made in Java & Swing)");
 			Log.info("OS: " + System.getProperty("os.name") + " = " + os);
 			Log.info("Current directory: " + new File(".").getCanonicalPath());
 			Log.info("Class path: " + System.getProperty("java.class.path"));
@@ -594,7 +594,7 @@ extends JFrame
 				}
 			}
 
-			// If zcld is currently not running, do a startup of the daemon as a child process
+			// If btcpd is currently not running, do a startup of the daemon as a child process
 			// It may be started but not ready - then also show dialog
 			ZCashInstallationObserver initialInstallationObserver =
 					new ZCashInstallationObserver(OSUtil.getProgramDirectory());
@@ -621,7 +621,7 @@ extends JFrame
 				if ((wce.getMessage().indexOf("{\"code\":-28") != -1) || // Started but not Ready
 						(wce.getMessage().indexOf("error code: -28") != -1))
 				{
-					Log.info("zcld is currently starting...");
+					Log.info("btcpd is currently starting...");
 					daemonStartInProgress = true;
 				}
 			}
@@ -630,7 +630,7 @@ extends JFrame
 			if ((zcashdInfo.status != DAEMON_STATUS.RUNNING) || (daemonStartInProgress))
 			{
 				Log.info(
-						"zcld is not running at the moment or has not started/synchronized 100% - showing splash...");
+						"btcpd is not running at the moment or has not started/synchronized 100% - showing splash...");
 				startupBar = new StartupProgressDialog(initialClientCaller);
 				startupBar.setVisible(true);
 				startupBar.waitForStartup();
@@ -661,7 +661,7 @@ extends JFrame
 			{
 				JOptionPane.showMessageDialog(
 						null,
-						"It appears that zcld has been started but is not ready to accept wallet\n" +
+						"It appears that btcpd has been started but is not ready to accept wallet\n" +
 								"connections. It is still loading the wallet and blockchain. Please try\n" +
 								"restarting this program.",
 								"Daemon Error",
@@ -670,9 +670,9 @@ extends JFrame
 			{
 				JOptionPane.showMessageDialog(
 						null,
-						"There was a problem communicating with the Zclassic daemon/wallet. \n" +
-								"Please ensure that the Zclassic server zcld is started (e.g. via \n" +
-								"command  \"zcld --daemon\"). Error Message: \n" +
+						"There was a problem communicating with the Bitcoin Private daemon/wallet. \n" +
+								"Please ensure that the Bitcoin Private server btcpd is started (e.g. via \n" +
+								"command  \"btcpd --daemon\"). Error Message: \n" +
 								wce.getMessage() +
 								"See the console/logfile output for more detailed error information!",
 								"Daemon Error",
@@ -720,7 +720,7 @@ extends JFrame
 			}
 		}
 
-		File zenConfigFile = new File(dir, "zclassic.conf");
+		File zenConfigFile = new File(dir, "btcp.conf");
 
 		if (zenConfigFile.exists())
 		{
@@ -734,8 +734,8 @@ extends JFrame
 				String line = scanner.nextLine();
 			  if (line.indexOf("rpcport=8232") > -1)
 				{
-					// RPC Port was 8232 for pre-2018 versions - Reset zclassic.conf
-					Log.info("DELETING zclassic.conf (" + zenConfigFile.getCanonicalPath() +
+					// RPC Port was 8232 for pre-2018 versions - Reset btcp.conf
+					Log.info("DELETING btcp.conf (" + zenConfigFile.getCanonicalPath() +
 							")");
 
 					zenConfigFile.delete();
@@ -746,7 +746,7 @@ extends JFrame
 		if (!zenConfigFile.exists())
 		{
 
-			Log.info("zclassic.conf (" + zenConfigFile.getCanonicalPath() +
+			Log.info("btcp.conf (" + zenConfigFile.getCanonicalPath() +
 					") does not exist. It will be created with default settings.");
 
 			Random r = new Random(System.currentTimeMillis());
@@ -754,15 +754,15 @@ extends JFrame
 			PrintStream configOut = new PrintStream(new FileOutputStream(zenConfigFile));
 
 			configOut.println("#############################################################################");
-			configOut.println("#                         ZCL Configuration File                            #");
+			configOut.println("#                        BTCP Configuration File                            #");
 			configOut.println("#############################################################################");
-			configOut.println("# This file has been automatically generated by the ZCL Full-Node Wallet    #");
+			configOut.println("# This file has been automatically generated by the BTCP Full-Node Wallet   #");
 			configOut.println("# with default settings. It may be further customized.                      #");
 			configOut.println("#############################################################################");
 			configOut.println("# Creation Date: " + new Date().toString());
 			configOut.println("#############################################################################");
 			configOut.println("");
-			configOut.println("# The rpcuser/rpcpassword are used for the local call to zcld");
+			configOut.println("# The rpcuser/rpcpassword are used for the local call to btcpd");
 			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
 			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" +
 					Math.abs(r.nextInt()) + "" +

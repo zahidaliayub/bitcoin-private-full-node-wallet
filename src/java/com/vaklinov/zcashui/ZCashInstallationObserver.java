@@ -75,7 +75,7 @@ public class ZCashInstallationObserver
 		if (!dir.exists() || dir.isFile())
 		{
 			throw new InstallationDetectionException(
-				"The Zclassic installation directory " + installDir + " does not exist or is not " +
+				"The Bitcoin Private installation directory " + installDir + " does not exist or is not " +
 			    "a directory or is otherwise inaccessible to the wallet!");
 		}
 
@@ -88,16 +88,16 @@ public class ZCashInstallationObserver
 			zcashcli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
 		}
 
-		Log.info("Using Zclassic daemon and rpc tools: " +
+		Log.info("Using Bitcoin Private daemon and rpc tools: " +
 		                   "zcld: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
 		                   "zcl-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
 
 		if ((zcashd == null) || (zcashcli == null) || (!zcashd.exists()) || (!zcashcli.exists()))
 		{
 			throw new InstallationDetectionException(
-				"The Zclassic Full-Node Desktop Wallet installation directory " + installDir + " needs\nto contain " +
+				"The Bitcoin Private Full-Node Desktop Wallet installation directory " + installDir + " needs\nto contain " +
 				"the command line utilities zcld and zcl-cli. At least one of them is missing! \n" +
-				"Please place files ZclassicSwingWallet.jar, " + OSUtil.getZCashCli() + ", " +
+				"Please place files BitcoinPrivateSwingWallet.jar, " + OSUtil.getZCashCli() + ", " +
 				OSUtil.getZCashd() + " in the same directory.");
 		}
 	}
@@ -296,7 +296,7 @@ public class ZCashInstallationObserver
 		}
 
 		String blockChainDir = OSUtil.getBlockchainDirectory();
-		File zenConf = new File(blockChainDir + File.separator + "zclassic.conf");
+		File zenConf = new File(blockChainDir + File.separator + "btcp.conf");
 		if (zenConf.exists())
 		{
 			Properties confProps = new Properties();

@@ -102,7 +102,7 @@ public class OSUtil
 	// Returns the name of the zcashd server - may vary depending on the OS.
 	public static String getZCashd()
 	{
-		String zcashd = "zcld";
+		String zcashd = "btcpd";
 		
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
@@ -114,10 +114,10 @@ public class OSUtil
 	}
 	
 	
-	// Returns the name of the zcl-cli tool - may vary depending on the OS.
+	// Returns the name of the btcp-cli tool - may vary depending on the OS.
 	public static String getZCashCli()
 	{
-		String zcashcli = "zcl-cli";
+		String zcashcli = "btcp-cli";
 		
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
@@ -135,7 +135,7 @@ public class OSUtil
 	{
 		// TODO: this way of finding the dir is JAR name dependent - tricky, may not work
 		// if program is repackaged as different JAR!
-		final String JAR_NAME = "ZclassicSwingWallet.jar";
+		final String JAR_NAME = "BitcoinPrivateSwingWallet.jar";
 		String cp = System.getProperty("java.class.path");
 		if ((cp != null) && (cp.indexOf(File.pathSeparator) == -1) &&
 			(cp.endsWith(JAR_NAME)))
@@ -218,13 +218,13 @@ public class OSUtil
 		
 		if (os == OS_TYPE.MAC_OS)
 		{
-			return new File(System.getProperty("user.home") + "/Library/Application Support/Zclassic").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/Library/Application Support/BitcoinPrivate").getCanonicalPath();
 		} else if (os == OS_TYPE.WINDOWS)
 		{
-			return new File(System.getenv("APPDATA") + "\\Zclassic").getCanonicalPath();
+			return new File(System.getenv("APPDATA") + "\\BitcoinPrivate").getCanonicalPath();
 		} else
 		{
-			return new File(System.getProperty("user.home") + "/.zclassic").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/.bitcoinprivate").getCanonicalPath();
 		}
 	}
 
@@ -239,13 +239,13 @@ public class OSUtil
 	    
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/ZclassicSwingWallet");
+	        dir = new File(userHome, "Library/Application Support/BitcoinPrivateSwingWallet");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZclassicSwingWallet");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\BitcoinPrivateSwingWallet");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZclassicSwingWallet");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".BitcoinPrivateSwingWallet");
 	    }
 	    
 		if (!dir.exists())
@@ -282,7 +282,7 @@ public class OSUtil
 	}
 
 
-	// Can be used to find zcld/zcl-cli if it is not found in the same place as the wallet JAR
+	// Can be used to find btcpd/btcp-cli if it is not found in the same place as the wallet JAR
 	// Null if not found
 	public static File findZCashCommand(String command)
 		throws IOException
@@ -290,7 +290,7 @@ public class OSUtil
 	    File f;
 	    
 	    // Try with system property zcash.location.dir - may be specified by caller
-	    String ZCashLocationDir = System.getProperty("zclassic.location.dir");
+	    String ZCashLocationDir = System.getProperty("bitcoinprivate.location.dir");
 	    if ((ZCashLocationDir != null) && (ZCashLocationDir.trim().length() > 0))
 	    {
 	        f = new File(ZCashLocationDir + File.separator + command);
@@ -310,11 +310,11 @@ public class OSUtil
 				"/usr/bin/", // Typical Ubuntu
 				"/bin/",
 				"/usr/local/bin/",
-				"/usr/local/zclassic/bin/",
-				"/usr/lib/zclassic/bin/",
+				"/usr/local/bitcoinprivate/bin/",
+				"/usr/lib/bitcoinprivate/bin/",
 				"/opt/local/bin/",
-				"/opt/local/zclassic/bin/",
-				"/opt/zclassic/bin/"
+				"/opt/local/bitcoinprivate/bin/",
+				"/opt/bitcoinprivate/bin/"
 			};
 	
 			for (String d : dirs)
@@ -335,7 +335,7 @@ public class OSUtil
 	    		File pf = new File(programFiles);
 	    		if (pf.exists() && pf.isDirectory())
 	    		{
-	    			File ZDir = new File(pf, "Zclassic");
+	    			File ZDir = new File(pf, "BitcoinPrivate");
 	    			if (ZDir.exists() && ZDir.isDirectory())
 	    			{
 	    				File cf = new File(ZDir, command);

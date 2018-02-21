@@ -122,13 +122,13 @@ extends WalletTabPanel
 
 		JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 9));
 		JLabel logoLabel = new JLabel(new ImageIcon(
-				this.getClass().getClassLoader().getResource("images/zclassic-logo-small.png")));
+				this.getClass().getClassLoader().getResource("images/btcp-44.png")));
 		tempPanel.add(logoLabel);
 		// TODO: use relative size
-		JLabel zcLabel = new JLabel(" Zclassic Wallet ");
-		zcLabel.setFont(new Font("Helvetica", Font.BOLD | Font.ITALIC, 28));
-		tempPanel.add(zcLabel);
-		tempPanel.setToolTipText("Powered by Zclassic");
+		JLabel btcpLabel = new JLabel(" Bitcoin Private Wallet ");
+		btcpLabel.setFont(new Font("Helvetica", Font.BOLD | Font.ITALIC, 28));
+		tempPanel.add(btcpLabel);
+		tempPanel.setToolTipText("Powered by Bitcoin Private");
 		balanceStatusPanel.add(tempPanel, BorderLayout.WEST);
 		// TODO: use relative size - only!
 		/*
@@ -470,11 +470,11 @@ extends WalletTabPanel
 		String text =
 				"<html><p text-align: right>" +
 						"<span style=\"" + color1 + "\">Transparent (T) Balance: " +
-						transparentUCBalance + " ZCL </span><br/> " +
+						transparentUCBalance + " BTCP </span><br/> " +
 						"<span style=\"" + color2 + "\">Private (Z) Balance: " +
-						privateUCBalance + " ZCL </span><br/> " +
+						privateUCBalance + " BTCP </span><br/> " +
 						"<span style=\"font-weight:bold;" + color3 + "\">Total: " +
-						totalUCBalance + " ZCL </span>"
+						totalUCBalance + " BTCP </span>"
 								+ "</p></html>";
 
 		this.walletBalanceLabel.setText(text);
@@ -488,9 +488,9 @@ extends WalletTabPanel
 					"Unconfirmed (unspendable) balance is being shown due to an<br/>" +
 					"ongoing transaction! Actual confirmed (spendable) balance is:<br/>" +
 					"<span style=\"font-size:5px\"><br/></span>" +
-					"Transparent (T): " + transparentBalance + " ZCL<br/>" +
-					"Private (Z): <span>" + privateBalance + " ZCL</span><br/>" +
-					"Total: <span style=\"font-weight:bold\">" + totalBalance + " ZCL</span>" +
+					"Transparent (T): " + transparentBalance + " BTCP<br/>" +
+					"Private (Z): <span>" + privateBalance + " BTCP</span><br/>" +
+					"Total: <span style=\"font-weight:bold\">" + totalBalance + " BTCP</span>" +
 					"</html>";
 		}
 

@@ -204,7 +204,7 @@ public class TransactionTable extends DataTable {
 			tempPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 			JLabel infoLabel = new JLabel("<html><span style=\"font-size:0.97em;\">"
 					+ "This table shows information about the transaction with technical details as "
-					+ "they appear at the Zclassic network level." + "</span>");
+					+ "they appear at the Bitcoin Private network level." + "</span>");
 			infoLabel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			tempPanel.add(infoLabel, BorderLayout.CENTER);
 			this.getContentPane().add(tempPanel, BorderLayout.NORTH);

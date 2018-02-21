@@ -1,8 +1,8 @@
-Package: zclassic-desktop-gui-wallet
+Package: bitcoinprivate-desktop-gui-wallet
 Version: 0.0.1
 Section: misc
 Priority: low
 Architecture: all
-Description: Zclassic Desktop GUI Wallet
-Maintainer: zclassic.org
-Depends: default-jdk, zcl
+Description: Bitcoin Private Desktop GUI Wallet
+Maintainer: btcprivate.org
+Depends: default-jdk, btcp
