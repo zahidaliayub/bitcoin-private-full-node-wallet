@@ -218,13 +218,13 @@ public class OSUtil
 		
 		if (os == OS_TYPE.MAC_OS)
 		{
-			return new File(System.getProperty("user.home") + "/Library/Application Support/BitcoinPrivate").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/Library/Application Support/BTCprivate").getCanonicalPath();
 		} else if (os == OS_TYPE.WINDOWS)
 		{
-			return new File(System.getenv("APPDATA") + "\\BitcoinPrivate").getCanonicalPath();
+			return new File(System.getenv("APPDATA") + "\\BTCprivate").getCanonicalPath();
 		} else
 		{
-			return new File(System.getProperty("user.home") + "/.bitcoinprivate").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/.btcprivate").getCanonicalPath();
 		}
 	}
 
@@ -239,13 +239,13 @@ public class OSUtil
 	    
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/BitcoinPrivateSwingWallet");
+	        dir = new File(userHome, "Library/Application Support/BTCprivateSwingWallet");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\BitcoinPrivateSwingWallet");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\BTCprivateSwingWallet");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".BitcoinPrivateSwingWallet");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".btcprivateSwingWallet");
 	    }
 	    
 		if (!dir.exists())
