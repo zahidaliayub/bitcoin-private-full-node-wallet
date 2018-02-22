@@ -720,7 +720,7 @@ extends JFrame
 			}
 		}
 
-		File zenConfigFile = new File(dir, "btcp.conf");
+		File zenConfigFile = new File(dir, "btcprivate.conf");
 
 		if (zenConfigFile.exists())
 		{
@@ -735,7 +735,7 @@ extends JFrame
 			  if (line.indexOf("rpcport=8232") > -1)
 				{
 					// RPC Port was 8232 for pre-2018 versions - Reset btcp.conf
-					Log.info("DELETING btcp.conf (" + zenConfigFile.getCanonicalPath() +
+					Log.info("DELETING btcprivate.conf (" + zenConfigFile.getCanonicalPath() +
 							")");
 
 					zenConfigFile.delete();
@@ -746,7 +746,7 @@ extends JFrame
 		if (!zenConfigFile.exists())
 		{
 
-			Log.info("btcp.conf (" + zenConfigFile.getCanonicalPath() +
+			Log.info("btcprivate.conf (" + zenConfigFile.getCanonicalPath() +
 					") does not exist. It will be created with default settings.");
 
 			Random r = new Random(System.currentTimeMillis());

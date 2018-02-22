@@ -90,8 +90,8 @@ If you are using Ubuntu or another Linux, you may need to
 right-click `BitcoinPrivateSwingWallet.jar` file and choose "Open with OpenJDK 8 Runtime".
 
 
-### `btcp.conf`
-Running the .jar will automatically set up `~/bitcoinprivate/btcp.conf` for you. In some cases, you may need to edit it manually. It should contain:
+### `btcprivate.conf`
+Running the .jar will automatically set up `~/bitcoinprivate/btcprivate.conf` for you. In some cases, you may need to edit it manually. It should contain:
 ```
 rpcuser=ENTER-RANDOM-ALPHANUMERICAL-PASSWORD
 rpcpassword=ENTER-RANDOM-ALPHANUMERICAL-PASSWORD

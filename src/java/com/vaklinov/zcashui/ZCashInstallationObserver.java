@@ -296,7 +296,7 @@ public class ZCashInstallationObserver
 		}
 
 		String blockChainDir = OSUtil.getBlockchainDirectory();
-		File zenConf = new File(blockChainDir + File.separator + "btcp.conf");
+		File zenConf = new File(blockChainDir + File.separator + "btcprivate.conf");
 		if (zenConf.exists())
 		{
 			Properties confProps = new Properties();
