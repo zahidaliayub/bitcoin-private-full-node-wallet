@@ -8,6 +8,6 @@ Exec=bitcoinpricat-desktop-gui-wallet
 Terminal=false
 X-MultipleArgs=false
 Type=Application
-Icon=/usr/lib/bitcoinpricate-gui-wallet/btcp-icon.png
+Icon=/usr/lib/bitcoinprivate-gui-wallet/btcp-icon.png
 Categories=GNOME;Application;
 StartupNotify=true
