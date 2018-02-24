@@ -396,7 +396,7 @@ public class WalletOperations
 	{
 		try
 		{
-			SingleKeyImportDialog kd = new SingleKeyImportDialog(this.parent, this.clientCaller);
+			SingleKeyImportDialog kd = new SingleKeyImportDialog(this.parent, this.clientCaller,this.sendCash,this.tabs);
 			kd.setVisible(true);
 
 		} catch (Exception ex)

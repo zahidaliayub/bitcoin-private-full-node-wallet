@@ -252,8 +252,7 @@ extends WalletTabPanel
 		sendButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
-			{			//disable btcp send until after fork
-				/*
+			{
 				try
 				{
 					SendCashPanel.this.sendCash();
@@ -274,7 +273,7 @@ extends WalletTabPanel
 									"Please check that the Bitcoin Private daemon is running and\n" +
 									"the sending parameters are correct.\n",
 									"Error Sending BTCP", JOptionPane.ERROR_MESSAGE);
-				}*/
+				}
 			}
 		});
 
@@ -423,8 +422,9 @@ extends WalletTabPanel
 		if (!installationObserver.isOnTestNet())
 		{
 			//TODO - BTCP
-			if (!(destinationAddress.startsWith("zc") ||
-					destinationAddress.startsWith("t1") || destinationAddress.startsWith("t3")))
+			if (!(destinationAddress.startsWith("zz") ||
+					destinationAddress.startsWith("n1") ||
+					destinationAddress.startsWith("nx")))
 			{
 				Object[] options = { "OK" };
 
@@ -432,7 +432,7 @@ extends WalletTabPanel
 						SendCashPanel.this.getRootPane().getParent(),
 						"The destination address to send BTCP to:\n" +
 								destinationAddress + "\n"+
-								"does not appear to be a valid BTCP address. BTCP addresses start with t1, t3 or zc!",
+								"does not appear to be a valid BTCP address. BTCP addresses start with n1, nx or zz!",
 								"Destination Address Invalid",
 								JOptionPane.DEFAULT_OPTION,
 								JOptionPane.ERROR_MESSAGE,
