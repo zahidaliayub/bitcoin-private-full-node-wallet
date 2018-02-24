@@ -175,6 +175,7 @@ public class ZCashClientCaller
 	    if (info.trim().toLowerCase(Locale.ROOT).startsWith("error: "))
 	    {
 	        info = info.substring(7);
+	        System.out.println(info);
 
 		    try
 		    {

@@ -215,9 +215,8 @@ extends JDialog
 									key + "\n" +
 									"has been successfully imported." + addition
 									+ "\n\n"
-									+ "As described in the whitepaper, at one point a change might be implemented\n "
-									+ "that removes unclaimed coins at a 0.14% rate."
-									+ " To claim your coins, it is easiest to sweep your balance to a new address.\n"
+									+ "As described in the whitepaper, at some point, unclaimed coins might be removed from circulation. \n"
+									+ " To claim your coins, it is easiest to Sweep your balance to a new address.\n"
 									+ " Do you want to perform a Sweep operation for the imported address now?",
 									"Successfully Imported Private Key",
 									JOptionPane.YES_NO_OPTION);
