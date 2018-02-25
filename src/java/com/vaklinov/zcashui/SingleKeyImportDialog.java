@@ -34,6 +34,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -47,6 +48,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
+import com.vaklinov.zcashui.ZCashClientCaller.WalletCallException;
 
 
 /**
@@ -207,6 +210,8 @@ extends JDialog
 					if (!Util.stringIsEmpty(address))
 					{
 						addition = " It corresponds to address:\n" + address;
+					}else {
+						address = getAddressForPrivateKey(key);
 					}
 
 					int doSweep = JOptionPane.showConfirmDialog(
@@ -230,9 +235,22 @@ extends JDialog
 						float balance = Float.parseFloat(stringBalance);
 						if(balance == 0 || balance <= txnFee) {
 							//show insufficient balance warning. let them know that they can still manually sweep later on should the blockchain not be synced 100% yet.
+							JOptionPane.showMessageDialog(
+									SingleKeyImportDialog.this.getRootPane().getParent(),
+									"The imported address has unsuficcient (confirmed) balance to Sweep.\n"
+											+ " If there is unconfirmed balance, please manually Sweep your balance later\n"
+											+ " by generating a new address and send your balance over.\n",
+											"No balance to sweep", JOptionPane.ERROR_MESSAGE);
 						}
 						else {
-							SingleKeyImportDialog.this.caller.sendCash(address, sweepZ,String.valueOf(balance-txnFee), null, String.valueOf(txnFee));
+							float amount = balance-txnFee;
+
+							SingleKeyImportDialog.this.caller.sendCash(address, sweepZ,String.valueOf(amount), "", String.valueOf(txnFee));
+							JOptionPane.showMessageDialog(
+									SingleKeyImportDialog.this.getRootPane().getParent(),
+									String.valueOf(amount) + " was Swept from "+address+"\n"
+											+ " to " + sweepZ,
+											"Sweep succeeded",JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 
@@ -253,6 +271,42 @@ extends JDialog
 					SingleKeyImportDialog.this.setVisible(false);
 					SingleKeyImportDialog.this.dispose();
 				}
+			}
+
+			private String getAddressForPrivateKey(String privKey) {
+				ZCashClientCaller caller = SingleKeyImportDialog.this.caller;
+				String address = null;
+				try {
+					for(String a:caller.getWalletAllPublicAddresses()) {
+						if(caller.getTPrivateKey(a).equals(privKey)) {
+							address = a;
+							break;
+						}
+					}
+					//if found, return
+					if(address != null) return address;
+					//else continue looking in other addresses
+					for(String a: caller.getWalletZAddresses()) {
+						if(caller.getZPrivateKey(a).equals(privKey)) {
+							address = a;
+							break;
+						}
+					}
+					//if found, return
+					if(address != null) return address;
+					for(String a: caller.getWalletPublicAddressesWithUnspentOutputs()) {
+						if(caller.getTPrivateKey(a).equals(privKey)) {
+							address = a;
+							break;
+						}
+					}
+
+
+				} catch (WalletCallException | IOException | InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return address;
 			}
 		}).start();
 	}
