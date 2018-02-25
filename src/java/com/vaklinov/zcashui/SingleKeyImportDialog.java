@@ -277,12 +277,6 @@ extends JDialog
 				ZCashClientCaller caller = SingleKeyImportDialog.this.caller;
 				String address = null;
 				try {
-					for(String a:caller.getWalletAllPublicAddresses()) {
-						if(caller.getTPrivateKey(a).equals(privKey)) {
-							address = a;
-							break;
-						}
-					}
 					//if found, return
 					if(address != null) return address;
 					//else continue looking in other addresses
