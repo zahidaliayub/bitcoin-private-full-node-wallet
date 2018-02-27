@@ -237,10 +237,12 @@ extends JDialog
 							//show insufficient balance warning. let them know that they can still manually sweep later on should the blockchain not be synced 100% yet.
 							JOptionPane.showMessageDialog(
 									SingleKeyImportDialog.this.getRootPane().getParent(),
-									"The imported address has unsuficcient (confirmed) balance to Sweep.\n"
-											+ " If there is unconfirmed balance, please manually Sweep your balance later\n"
-											+ " by generating a new address and send your balance over.\n",
-											"No balance to sweep", JOptionPane.ERROR_MESSAGE);
+									"The imported address has an insufficient (confirmed) balance - cannot Sweep.\n"
+										  + " If there is an unconfirmed balance, please manually try again later.\n"
+                      + " You may need to wait for the blockchain to fully sync.\n"
+                      + "\n\n"
+                      + " Your private key has only been imported (same address, same key).",
+											"Insufficient Balance", JOptionPane.ERROR_MESSAGE);
 						}
 						else {
 							float amount = balance-txnFee;
@@ -248,9 +250,9 @@ extends JDialog
 							SingleKeyImportDialog.this.caller.sendCash(address, sweepZ,String.valueOf(amount), "", String.valueOf(txnFee));
 							JOptionPane.showMessageDialog(
 									SingleKeyImportDialog.this.getRootPane().getParent(),
-									String.valueOf(amount) + " was Swept from "+address+"\n"
+									String.valueOf(amount) + " was Swept from " + address + "\n"
 											+ " to " + sweepZ,
-											"Sweep succeeded",JOptionPane.INFORMATION_MESSAGE);
+											"Sweep Successful", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 
