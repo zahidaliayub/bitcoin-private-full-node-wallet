@@ -1,6 +1,6 @@
 # [BitcoinPrivate](https://btcprivate.org/) Full-Node Desktop Wallet
 
-### Supports T and Z addresses, messaging, and more.
+### Supports B and Z addresses. Soon, you can also import your private keys from Zclassic or Bitcoin. 
 
 ### Download the latest release:
 https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
@@ -11,7 +11,7 @@ https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
 [Java](https://java.com/en/download/) must be installed.
 
 
-![Bitcoin Private Desktop Wallet](https://github.com/z-classic/zclassic-full-node-wallet/raw/master/docs/WalletPreviewWin.png "Bitcoin Private Desktop Wallet")
+![Bitcoin Private Desktop Wallet](https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/raw/master/docs/WalletPreviewWin.png "Bitcoin Private Desktop Wallet")
 
 
 #### WARNING: Careful with 'watch-only' imports! They will appear in 'addresses', but ***do not*** receive funds to them because you have not fully imported the private key! This UX issue will be fixed.
@@ -19,7 +19,7 @@ https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
 
 ## Building, Installing, and Running the Wallet
 
-*To run the Bitcoin Private Full-Node Desktop Wallet from source, you need to have [BitcoinPrivate](https://github.com/BTCPrivate/BitcoinPrivate) built and ready to go. Effectively, this means having a copy of `btcpd` and `btc-cli` in the .jar's directory.*
+*To run the Bitcoin Private Full-Node Desktop Wallet from source, you need to have [BitcoinPrivate](https://github.com/BTCPrivate/BitcoinPrivate) built and ready to go. Effectively, this means having a copy of `btcpd` and `btcp-cli` in the .jar's directory.*
 
 #### For best security, it is recommended to build the entire Bitcoin Private wallet by yourself, directly from GitHub.
 
@@ -68,13 +68,13 @@ https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
 
 ##### 3. Installing the Base Wallet ([BitcoinPrivate](https://github.com/BTCPrivate/BitcoinPrivate))
 
-Once you've built Bitcoin Private from source code, `btcpd` and `btcp-cli` will appear in `~/bitcoinprivate/src`.
+Once you've built Bitcoin Private from source code, `btcpd` and `btcp-cli` will appear in `~/BitcoinPrivate/src`.
 
 You will need to copy them beside the jar, and rename them to `btcpd` and `btcp-cli`:
 
 ```
-cp ~/bitcoinprivate/src/btcpd build/jars/btcpd
-cp ~/bitcoinprivate/src/btcp-cli build/jars/btcp-cli
+cp ~/BitcoinPrivate/src/btcpd build/jars/btcpd
+cp ~/BitcoinPrivate/src/btcp-cli build/jars/btcp-cli
 ```
 
 You can now run the Desktop GUI Wallet:
@@ -91,11 +91,11 @@ right-click `BitcoinPrivateSwingWallet.jar` file and choose "Open with OpenJDK 8
 
 
 ### `btcprivate.conf`
-Running the .jar will automatically set up `~/bitcoinprivate/btcprivate.conf` for you. In some cases, you may need to edit it manually. It should contain:
+Running the .jar will automatically set up `~/.btcprivate/btcprivate.conf` for you. In some cases, you may need to edit it manually. It should contain:
 ```
 rpcuser=ENTER-RANDOM-ALPHANUMERICAL-PASSWORD
 rpcpassword=ENTER-RANDOM-ALPHANUMERICAL-PASSWORD
-rpcport=8023
+rpcport=7932
 #addnode=...
 
 ```
@@ -124,13 +124,13 @@ Windows you need to right-click on `BitcoinPrivateSwingWallet.exe` and choose op
 Properties >> Compatibility >> Override high DPI scaling behavior >> Scaling performed by: (Application)
 ```
 
-![DPI Scaling](https://github.com/z-classic/zclassic-full-node-wallet/raw/master/docs/EXEScalingSettings.png "DPI Scaling")
+![DPI Scaling](https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/raw/master/docs/EXEScalingSettings.png "DPI Scaling")
 
 
 ### License
 Originally forked from the [ZENCash Swing Wallet](https://github.com/ZencashOfficial/zencash-swing-wallet-ui).
 
-This program is distributed under an [MIT License](https://github.com/z-classic/zclassic-full-node-wallet/raw/master/LICENSE).
+This program is distributed under an [MIT License](https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/raw/master/LICENSE).
 
 ### Disclaimer
 
