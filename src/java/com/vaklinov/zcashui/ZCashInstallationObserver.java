@@ -97,7 +97,7 @@ public class ZCashInstallationObserver
 			throw new InstallationDetectionException(
 				"The Bitcoin Private Full-Node Desktop Wallet installation directory " + installDir + " needs\nto contain " +
 				"the command line utilities btcpd and btcp-cli. At least one of them is missing! \n" +
-				"Please place files BitcoinPrivateSwingWallet.jar, " + OSUtil.getZCashCli() + ", " +
+				"Please place files BitcoinPrivateDesktopWallet.jar, " + OSUtil.getZCashCli() + ", " +
 				OSUtil.getZCashd() + " in the same directory.");
 		}
 	}

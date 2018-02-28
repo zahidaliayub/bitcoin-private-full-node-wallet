@@ -27,7 +27,7 @@
  * THE SOFTWARE.
  *
 -->
-<project name="BitcoinPrivateSwingWallet" basedir="../.." default="buildit">
+<project name="BitcoinPrivateDesktopWallet" basedir="../.." default="buildit">
 
     <property name="src.dir"     value="src"/>
 	<property name="lib.dir"     value="lib"/>

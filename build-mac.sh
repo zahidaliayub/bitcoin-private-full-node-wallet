@@ -23,16 +23,16 @@ else
   rm -rf jar2app
 fi
 
-#fetch + install dylibbundler 
+#fetch + install dylibbundler
 if [ -e /usr/local/bin/dylibbundler ]
 then
     echo "dylibbundler already installed - OK"
 else
 	git clone https://github.com/auriamg/macdylibbundler
-	cd macdylibbundler 
+	cd macdylibbundler
 	sudo make install
   cd ..
-  rm -rf macdylibbundler 
+  rm -rf macdylibbundler
 fi
 
 if [ ! -e ./btcpd ]
@@ -63,7 +63,7 @@ echo "|| Packaging App ||"
 echo "*******************"
 echo ""
 #package jar to app
-jar2app build/jars/BitcoinPrivateSwingWallet.jar -n BitcoinPrivateDesktopWallet  -i ./src/resources/images/btcp.icns
+jar2app build/jars/BitcoinPrivateDesktopWallet.jar -n BitcoinPrivateDesktopWallet  -i ./src/resources/images/btcp.icns
 
 #add btcpd and btcp-cli into the required Contents folder of the App
 cp ./btcpd ./BitcoinPrivateDesktopWallet.app/Contents/btcpd
