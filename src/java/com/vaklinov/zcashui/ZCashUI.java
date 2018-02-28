@@ -726,7 +726,13 @@ extends JFrame
 					") does not exist. It will be created with default settings.");
 			
 			PrintStream configOut = new PrintStream(new FileOutputStream(zenConfigFile));
-
+			Random r = new Random(System.currentTimeMillis());
+			configOut.print("# Generated RPC credentials"); 	
+			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
+			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" + 
+			                                       Math.abs(r.nextInt()) + "" + 
+					                               Math.abs(r.nextInt()));
+			
 			for(String node : getDefaultConfig()) {
 				configOut.println(node);
 			}
