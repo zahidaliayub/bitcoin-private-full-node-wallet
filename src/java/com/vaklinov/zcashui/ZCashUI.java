@@ -727,7 +727,7 @@ extends JFrame
 			
 			PrintStream configOut = new PrintStream(new FileOutputStream(zenConfigFile));
 			Random r = new Random(System.currentTimeMillis());
-			configOut.print("# Generated RPC credentials"); 	
+			configOut.println("# Generated RPC credentials"); 	
 			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
 			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" + 
 			                                       Math.abs(r.nextInt()) + "" + 
