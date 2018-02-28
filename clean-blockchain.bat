@@ -1,5 +1,5 @@
 ::
-:: clean.bat
+:: clean-blockchain.bat
 ::
 :: ------------------------------------------------------------------
 :: [Niels Buekers] 	Clean blockchain folders
