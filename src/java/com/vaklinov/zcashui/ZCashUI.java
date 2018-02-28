@@ -130,8 +130,6 @@ extends JFrame
 		ClassLoader cl = this.getClass().getClassLoader();
 
 		this.setIconImage(new ImageIcon(cl.getResource("images/btcp-200.png")).getImage());
-		System.out.println(cl.getResource("config/addnodes.txt").getPath());
-
 		Container contentPane = this.getContentPane();
 
 		errorReporter = new StatusUpdateErrorReporter(this);
