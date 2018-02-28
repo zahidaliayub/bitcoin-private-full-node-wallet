@@ -1,6 +1,6 @@
 # [BitcoinPrivate](https://btcprivate.org/) Full-Node Desktop Wallet
 
-### Supports B and Z addresses. Soon, you can also import your private keys from Zclassic or Bitcoin. 
+### Supports B and Z addresses. Soon, you can also import your private keys from Zclassic or Bitcoin.
 
 ### Download the latest release:
 https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
@@ -58,13 +58,13 @@ https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
    ```
    ant -buildfile ./src/build/build.xml
    ```
-   This may take a few seconds. When it finishes, you will now see `build/jars/BitcoinPrivateSwingWallet.jar`.
+   This may take a few seconds. When it finishes, you will now see `build/jars/BitcoinPrivateDesktopWallet.jar`.
 
    You need to make this file executable:
    ```
-   chmod u+x ./build/jars/BitcoinPrivateSwingWallet.jar
+   chmod u+x ./build/jars/BitcoinPrivateDesktopWallet.jar
    ```
-   At this point the build process is finished! The final product is the GUI Wallet Java JAR: `build/jars/BitcoinPrivateSwingWallet.jar`
+   At this point the build process is finished! The final product is the GUI Wallet Java JAR: `build/jars/BitcoinPrivateDesktopWallet.jar`
 
 ##### 3. Installing the Base Wallet ([BitcoinPrivate](https://github.com/BTCPrivate/BitcoinPrivate))
 
@@ -80,14 +80,14 @@ cp ~/BitcoinPrivate/src/btcp-cli build/jars/btcp-cli
 You can now run the Desktop GUI Wallet:
 
 ```
-java -jar build/jars/BitcoinPrivateSwingWallet.jar
+java -jar build/jars/BitcoinPrivateDesktopWallet.jar
 ```
 
 Or just double-click it!
 
 
 If you are using Ubuntu or another Linux, you may need to
-right-click `BitcoinPrivateSwingWallet.jar` file and choose "Open with OpenJDK 8 Runtime".
+right-click `BitcoinPrivateDesktopWallet.jar` file and choose "Open with OpenJDK 8 Runtime".
 
 
 ### `btcprivate.conf`
@@ -106,7 +106,7 @@ rpcport=7932
 with such applications on the same PC. For instance some distributed exchange applications are known to create watch-only addresses in the
 `wallet.dat` file that cause the GUI wallet to display a wrong balance and/or display addresses that do not belong to the wallet.
 1. **Limitation:** if two users exchange text messages via the messaging UI TAB and one of them has a system clock, substantially running slow or fast by more than 1 minute, it is possible that this user will see text messages appearing out of order.
-1. **Limitation:** if a messaging identity has been created (happens on first click on the messaging UI tab), then replacing the `wallet.dat` or changing the node configuration between mainnet and testnet will make the identity invalid. This will result in a wallet update error. To remove the error the directory `~/.BitcoinPrivateSwingWallet/messaging` may be manually renamed or deleted (when the wallet is stopped). **CAUTION: all messaging history will be lost in this case!**
+1. **Limitation:** if a messaging identity has been created (happens on first click on the messaging UI tab), then replacing the `wallet.dat` or changing the node configuration between mainnet and testnet will make the identity invalid. This will result in a wallet update error. To remove the error the directory `~/.BitcoinPrivateDesktopWallet/messaging` may be manually renamed or deleted (when the wallet is stopped). **CAUTION: all messaging history will be lost in this case!**
 1. **Limitation:** Wallet encryption has been temporarily disabled in Bitcoin Private due to stability problems. A corresponding issue
 [#1552](https://github.com/zcash/zcash/issues/1552) has been opened by the Zcash developers. Correspondingly,
 wallet encryption has been temporarily disabled in the Bitcoin Private Desktop GUI Wallet.
@@ -116,10 +116,10 @@ transactions). A corresponding issue [#1438](https://github.com/zcash/zcash/issu
 for the Zcash developers.
 1. **Limitation:** The CPU percentage shown to be taken by btcpd on Linux is the average for the entire lifetime
 of the process. This is not very useful. This will be improved in future versions.
-1. **Limitation:** When using a natively compiled wallet version (e.g. `BitcoinPrivateSwingWallet.exe` for Windows) on a
+1. **Limitation:** When using a natively compiled wallet version (e.g. `BitcoinPrivateDesktopWallet.exe` for Windows) on a
 very high resolution monitor with a specifically configured DPI scaling (enlargement) factor to make GUI
 elements look larger, the GUI elements of the wallet actually do not scale as expected. To correct this on
-Windows you need to right-click on `BitcoinPrivateSwingWallet.exe` and choose option:
+Windows you need to right-click on `BitcoinPrivateDesktopWallet.exe` and choose option:
 ```
 Properties >> Compatibility >> Override high DPI scaling behavior >> Scaling performed by: (Application)
 ```
