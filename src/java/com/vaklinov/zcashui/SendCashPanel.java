@@ -742,12 +742,10 @@ extends WalletTabPanel
 			{
 				// Open block explorer
 				Log.info("Transaction ID for block explorer is: " + TXID);
-				// TODO: PEGA88 && JON BTCP EXPLORER
-				String urlPrefix = "https://zcl-explorer.com/tx/";
+				String urlPrefix = "https://explorer.btcprivate.org/tx/";
 				if (installationObserver.isOnTestNet())
 				{
-					//TODO BTCP testnet explorer
-					urlPrefix = "https://explorer-testnet.zen-solutions.io/tx/";
+					urlPrefix = "https://testnet.btcprivate.org/tx/";
 				}
 				Desktop.getDesktop().browse(new URL(urlPrefix + TXID).toURI());
 			}

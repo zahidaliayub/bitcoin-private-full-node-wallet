@@ -22,7 +22,7 @@ public class ArizenWallet implements WalletRepo {
 	Connection conn = null;
 		
 	private static String settingNotification = "1";
-	private static String settingExplorer = "https://explorer.zensystem.io/";
+	private static String settingExplorer = "https://explorer.btcprivate.org/";
 	private static String settingApi = "https://explorer.zensystem.io/insight-api-zen/";
 	
     private static String sqlInsertPublicAddress = "INSERT INTO wallet(pk, addr, lastbalance, name) VALUES(?,?,?,?)";
