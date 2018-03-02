@@ -354,7 +354,7 @@ public class Util
 	public static boolean isZAddress(String address)
 	{
 		return (address != null) && 
-			   (address.startsWith("zc") || address.startsWith("zt")) && 
+			   (address.startsWith("zc") || address.startsWith("zz") || address.startsWith("zt")) && 
 			   (address.length() > 40);
 	}
 	

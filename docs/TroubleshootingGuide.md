@@ -1,44 +1,44 @@
-## [Zclassic](https://zclassic.org/) Desktop GUI Wallet troubleshooting guide
+## [BitcoinPrivate](https://btcprivate.org/) Desktop GUI Wallet troubleshooting guide
 
-![Screenshot1](ZENChat_small.png "Chat Window") ![Screenshot1](ZclassicWalletMac_0.74.7_small.png "Wallet Window") 
+![Screenshot1](ZENChat_small.png "Chat Window") ![Screenshot1](BitcoinPrivateWalletMac_0.74.7_small.png "Wallet Window")
 
 This document outlines possible solutions to several common problems that user might encounter while using the wallet.
 
 ### How to diagnose wallet problems
 
-When wallet problems occur, the information about the errors that caused the issue is usually found in the log files written by the wallet itself and also by `zcld`. The location of the wallet log files is:
+When wallet problems occur, the information about the errors that caused the issue is usually found in the log files written by the wallet itself and also by `btcpd`. The location of the wallet log files is:
 ```
-Linux:    ~/.ZclassicSwingWallet/ZclassicGUIWallet_xxxx_xx_debug.log 
-Windows:  %LOCALAPPDATA%/ZclassicSwingWallet/ZclassicGUIWallet_xxxx_xx_debug.log
-Mac OS:   ~/Library/Application Support/ZclassicSwingWallet/ZclassicGUIWallet_xxxx_xx_debug.log
+Linux:    ~/.BitcoinPrivateDesktopWallet/BitcoinPrivateGUIWallet_xxxx_xx_debug.log
+Windows:  %LOCALAPPDATA%/BitcoinPrivateDesktopWallet/BitcoinPrivateGUIWallet_xxxx_xx_debug.log
+Mac OS:   ~/Library/Application Support/BitcoinPrivateDesktopWallet/BitcoinPrivateGUIWallet_xxxx_xx_debug.log
 ```
-`zcld` that is automatically started by the wallet, stores its logs at locations:
+`btcpd` that is automatically started by the wallet, stores its logs at locations:
 ```
-Linux:    ~/.zen/debug.log, 
-Windows:  %APPDATA%/Zen/debug.log
-Mac OS:   ~/Library/Application Support/Zen/debug.log
+Linux:    ~/.btcprivate/debug.log,
+Windows:  %APPDATA%/BTCPrivate/debug.log
+Mac OS:   ~/Library/Application Support/BTCPrivate/debug.log
  ```
 The log files are the first place too look for clues as to the nature of problem.
 
 ### Common Problem 1 - wallet fails during start up
 
-This kind of problem may have multiple causes but the most frequent one in practice is that `zcld` fails to start properly. The latter is in turn most commonly caused by block-chain corruption. This could occur 
-in rare cases when for instance machines are stopped due to power disruptions, while `zcld` is writing data.
+This kind of problem may have multiple causes but the most frequent one in practice is that `btcpd` fails to start properly. The latter is in turn most commonly caused by block-chain corruption. This could occur
+in rare cases when for instance machines are stopped due to power disruptions, while `btcpd` is writing data.
 
 A common symptom of this problem is an error message like:
-![Screenshot1](EOF_error.png "Chat Window") 
+![Screenshot1](EOF_error.png "Chat Window")
 
-The reason is usually that `zcld` has not started properly and the GUI wallet cannot connect to it. As a start
-one may examine the `zcld` logs to find the technical details of the problem. One way to fix this problem, that 
-works in 90%+ of cases is to start `zcld` manually with a `-reindex` option from a terminal and start the GUI wallet only after that. The command is:
+The reason is usually that `btcpd` has not started properly and the GUI wallet cannot connect to it. As a start
+one may examine the `btcpd` logs to find the technical details of the problem. One way to fix this problem, that
+works in 90%+ of cases is to start `btcpd` manually with a `-reindex` option from a terminal and start the GUI wallet only after that. The command is:
 ```
-zcld -reindex
+btcpd -reindex
 ```
 For non-technical users here is some information on how to open a terminal on [Windows](https://www.lifewire.com/how-to-open-command-prompt-2618089) and [Mac OS](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac). The full command on Mac OS is:
 ```
-/Applications/ZclassicWallet.app/Contents/Java/zcld -reindex
+/Applications/BitcoinPrivateWallet.app/Contents/Java/btcpd -reindex
 ```
-On Windows you first have to locate `zcld.exe`. It is in the `/app` sub-directory of the wallet installation.
+On Windows you first have to locate `btcpd.exe`. It is in the `/app` sub-directory of the wallet installation.
 
 ### Disclaimer
 

@@ -126,7 +126,8 @@ public class JContactListPanel
         JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 3, 0));
         tempPanel.add(removeButton);
         tempPanel.add(addButton);
-        tempPanel.add(addGroupButton);
+        //currently disable group until we have time to investigate after fork
+        //tempPanel.add(addGroupButton);
         upperPanel.add(tempPanel, BorderLayout.EAST);
 
         upperPanel.add(new JLabel(

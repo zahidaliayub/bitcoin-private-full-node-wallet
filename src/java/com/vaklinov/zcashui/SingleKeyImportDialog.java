@@ -34,6 +34,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -45,7 +46,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
+import com.vaklinov.zcashui.ZCashClientCaller.WalletCallException;
 
 
 /**
@@ -54,7 +58,7 @@ import javax.swing.JTextField;
  * @author Ivan Vaklinov <ivan@vaklinov.com>
  */
 public class SingleKeyImportDialog
-	extends JDialog
+extends JDialog
 {
 	protected boolean isOKPressed = false;
 	protected String  key    = null;
@@ -68,17 +72,19 @@ public class SingleKeyImportDialog
 	protected JProgressBar progress = null;
 
 	protected ZCashClientCaller caller;
+	private SendCashPanel sendCashPanel;
+	private JTabbedPane parentTabs;
 
 	JButton okButton;
 	JButton cancelButton;
 
-	public SingleKeyImportDialog(JFrame parent, ZCashClientCaller caller)
+	public SingleKeyImportDialog(JFrame parent, ZCashClientCaller caller,SendCashPanel sendCashPanel,JTabbedPane parentTabs)
 	{
 		super(parent);
 		this.caller = caller;
 
 		this.setTitle("Import A Private Key");
-	    this.setLocation(parent.getLocation().x + 50, parent.getLocation().y + 50);
+		this.setLocation(parent.getLocation().x + 50, parent.getLocation().y + 50);
 		this.setModal(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -88,8 +94,8 @@ public class SingleKeyImportDialog
 
 		JPanel tempPanel = new JPanel(new BorderLayout(0, 0));
 		tempPanel.add(this.upperLabel = new JLabel(
-			"<html>Please enter a single private key to import." +
-		    "</html>"), BorderLayout.CENTER);
+				"<html>Please enter a single private key to import." +
+				"</html>"), BorderLayout.CENTER);
 		controlsPanel.add(tempPanel);
 
 		JLabel dividerLabel = new JLabel("   ");
@@ -107,11 +113,11 @@ public class SingleKeyImportDialog
 
 		tempPanel = new JPanel(new BorderLayout(0, 0));
 		tempPanel.add(this.lowerLabel = new JLabel(
-			"<html><span style=\"font-weight:bold\">" +
-		    "Warning:</span> Importing private keys can be a slow operation that " +
-		    "requires blockchain rescanning (may take many minutes). <br/>The GUI " +
-			"will not be usable for other functions during this time.</html>"),
-			BorderLayout.CENTER);
+				"<html><span style=\"font-weight:bold\">" +
+						"Warning:</span> Importing private keys can be a slow operation that " +
+						"requires blockchain rescanning (may take many minutes). <br/>The GUI " +
+				"will not be usable for other functions during this time.</html>"),
+				BorderLayout.CENTER);
 		controlsPanel.add(tempPanel);
 
 		dividerLabel = new JLabel("   ");
@@ -172,9 +178,9 @@ public class SingleKeyImportDialog
 		if ((key == null) || (key.trim().length() <= 0))
 		{
 			JOptionPane.showMessageDialog(
-				SingleKeyImportDialog.this.getParent(),
-				"Please enter a key.", "No Key Entered",
-				JOptionPane.ERROR_MESSAGE);
+					SingleKeyImportDialog.this.getParent(),
+					"Please enter a key.", "No Key Entered",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
@@ -204,31 +210,99 @@ public class SingleKeyImportDialog
 					if (!Util.stringIsEmpty(address))
 					{
 						addition = " It corresponds to address:\n" + address;
+					}else {
+						address = getAddressForPrivateKey(key);
 					}
 
-					JOptionPane.showMessageDialog(
-						SingleKeyImportDialog.this,
-						"The private key:\n" +
-						key + "\n" +
-						"has been successfully imported." + addition,
-						"Successfully Imported Private Key",
-						JOptionPane.INFORMATION_MESSAGE);
+					int doSweep = JOptionPane.showConfirmDialog(
+							SingleKeyImportDialog.this,
+							"The private key:\n" +
+									key + "\n" +
+									"has been successfully imported." + addition
+									+ "\n\n"
+									+ "As described in the whitepaper, at some point, unclaimed coins might be removed from circulation. \n"
+									+ " To claim your coins, it is easiest to Sweep your balance to a new address.\n"
+									+ " Do you want to perform a Sweep operation for the imported address now?",
+									"Successfully Imported Private Key",
+									JOptionPane.YES_NO_OPTION);
+
+					if (doSweep == JOptionPane.YES_OPTION)
+					{
+						float txnFee = 0.0001f;
+						String sweepZ = SingleKeyImportDialog.this.caller.createNewAddress(true);
+						String stringBalance = SingleKeyImportDialog.this.caller.getBalanceForAddress(address);
+						//full amount minus default txn fee
+						float balance = Float.parseFloat(stringBalance);
+						if(balance == 0 || balance <= txnFee) {
+							//show insufficient balance warning. let them know that they can still manually sweep later on should the blockchain not be synced 100% yet.
+							JOptionPane.showMessageDialog(
+									SingleKeyImportDialog.this.getRootPane().getParent(),
+									"The imported address has an insufficient (confirmed) balance - cannot Sweep.\n"
+										  + " If there is an unconfirmed balance, please manually try again later.\n"
+                      + " You may need to wait for the blockchain to fully sync.\n"
+                      + "\n\n"
+                      + " Your private key has only been imported (same address, same key).",
+											"Insufficient Balance", JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							float amount = balance-txnFee;
+
+							SingleKeyImportDialog.this.caller.sendCash(address, sweepZ,String.valueOf(amount), "", String.valueOf(txnFee));
+							JOptionPane.showMessageDialog(
+									SingleKeyImportDialog.this.getRootPane().getParent(),
+									String.valueOf(amount) + " was Swept from " + address + "\n"
+											+ " to " + sweepZ,
+											"Sweep Successful", JOptionPane.INFORMATION_MESSAGE);
+						}
+					}
+
+
 				} catch (Exception e)
 				{
 					Log.error("An error occurred when importing private key", e);
 
 					JOptionPane.showMessageDialog(
-						SingleKeyImportDialog.this.getRootPane().getParent(),
-						"Error occurred when importing private key:\n" +
-						e.getClass().getName() + ":\n" + e.getMessage() + "\n\n" +
-						"Please ensure that zcld is running, and the key is in the correct \n" +
-						"form. Try again later.\n",
-						"Error Importing Private Key", JOptionPane.ERROR_MESSAGE);
+							SingleKeyImportDialog.this.getRootPane().getParent(),
+							"Error occurred when importing private key:\n" +
+									e.getClass().getName() + ":\n" + e.getMessage() + "\n\n" +
+									"Please ensure that btcpd is running, and the key is in the correct \n" +
+									"form. Try again later.\n",
+									"Error Importing Private Key", JOptionPane.ERROR_MESSAGE);
 				} finally
 				{
 					SingleKeyImportDialog.this.setVisible(false);
 					SingleKeyImportDialog.this.dispose();
 				}
+			}
+
+			private String getAddressForPrivateKey(String privKey) {
+				ZCashClientCaller caller = SingleKeyImportDialog.this.caller;
+				String address = null;
+				try {
+					//if found, return
+					if(address != null) return address;
+					//else continue looking in other addresses
+					for(String a: caller.getWalletZAddresses()) {
+						if(caller.getZPrivateKey(a).equals(privKey)) {
+							address = a;
+							break;
+						}
+					}
+					//if found, return
+					if(address != null) return address;
+					for(String a: caller.getWalletPublicAddressesWithUnspentOutputs()) {
+						if(caller.getTPrivateKey(a).equals(privKey)) {
+							address = a;
+							break;
+						}
+					}
+
+
+				} catch (WalletCallException | IOException | InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return address;
 			}
 		}).start();
 	}

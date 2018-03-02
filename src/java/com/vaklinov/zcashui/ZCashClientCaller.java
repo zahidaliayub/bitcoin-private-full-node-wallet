@@ -114,8 +114,8 @@ public class ZCashClientCaller
 		if ((zcashcli == null) || (!zcashcli.exists()))
 		{
 			throw new IOException(
-				"The Zclassic Desktop Wallet installation directory (" + installDir + ") needs to contain " +
-				"the command line utilities zcld and zcl-cli. zcl-cli is missing!");
+				"The Bitcoin Private Desktop Wallet installation directory (" + installDir + ") needs to contain " +
+				"the command line utilities btcpd and btcp-cli. btcp-cli is missing!");
 		}
 
 		zcashd = new File(dir, OSUtil.getZCashd());
@@ -127,8 +127,8 @@ public class ZCashClientCaller
 		if (zcashd == null || (!zcashd.exists()))
 		{
 		    throw new IOException(
-		    	"The Zclassic command line utility " + zcashcli.getCanonicalPath() +
-		    	" was found, but zcld was not found!");
+		    	"The Bitcoin Private command line utility " + zcashcli.getCanonicalPath() +
+		    	" was found, but btcpd was not found!");
 		}
 	}
 
@@ -175,6 +175,7 @@ public class ZCashClientCaller
 	    if (info.trim().toLowerCase(Locale.ROOT).startsWith("error: "))
 	    {
 	        info = info.substring(7);
+	        System.out.println(info);
 
 		    try
 		    {

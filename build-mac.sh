@@ -23,30 +23,30 @@ else
   rm -rf jar2app
 fi
 
-#fetch + install dylibbundler 
+#fetch + install dylibbundler
 if [ -e /usr/local/bin/dylibbundler ]
 then
     echo "dylibbundler already installed - OK"
 else
 	git clone https://github.com/auriamg/macdylibbundler
-	cd macdylibbundler 
+	cd macdylibbundler
 	sudo make install
   cd ..
-  rm -rf macdylibbundler 
+  rm -rf macdylibbundler
 fi
 
-if [ ! -e ./zcld ]
+if [ ! -e ./btcpd ]
 then
-	echo "please provide zcld in the root directory"
+	echo "please provide btcpd in the root directory"
 else
-	echo "found zcld - OK"
+	echo "found btcpd - OK"
 fi
 
-if [ ! -e ./zcl-cli ]
+if [ ! -e ./btcp-cli ]
 then
-	echo "please provide zcl-cli in the root directory"
+	echo "please provide btcp-cli in the root directory"
 else
-	echo "found zcl-cli - OK"
+	echo "found btcp-cli - OK"
 fi
 echo ""
 echo "******************"
@@ -63,15 +63,15 @@ echo "|| Packaging App ||"
 echo "*******************"
 echo ""
 #package jar to app
-jar2app build/jars/ZclassicSwingWallet.jar -n ZclassicDesktopWallet  -i ./src/resources/images/zclassic-logo.icns
+jar2app build/jars/BitcoinPrivateDesktopWallet.jar -n BitcoinPrivateDesktopWallet  -i ./src/resources/images/btcp.icns
 
-#add zcld and zcl-cli into the required Contents folder of the App
-cp ./zcld ./ZclassicDesktopWallet.app/Contents/zcld
-cp ./zcl-cli ./ZclassicDesktopWallet.app/Contents/zcl-cli
+#add btcpd and btcp-cli into the required Contents folder of the App
+cp ./btcpd ./BitcoinPrivateDesktopWallet.app/Contents/btcpd
+cp ./btcp-cli ./BitcoinPrivateDesktopWallet.app/Contents/btcp-cli
 
 
-chmod +x ./ZclassicDesktopWallet.app/Contents/zcld
-chmod +x ./ZclassicDesktopWallet.app/Contents/zcl-cli
+chmod +x ./BitcoinPrivateDesktopWallet.app/Contents/btcpd
+chmod +x ./BitcoinPrivateDesktopWallet.app/Contents/btcp-cli
 echo ""
 echo "**********************************"
 echo "|| Statically linking libraries ||"
@@ -79,7 +79,7 @@ echo "**********************************"
 echo ""
 
 #statically build required libraries
-dylibbundler -od -b -x ./ZclassicDesktopWallet.app/Contents/zcld \
-                    -x ./ZclassicDesktopWallet.app/Contents/zcl-cli \
-                    -d ./ZclassicDesktopWallet.app/Contents/libs \
+dylibbundler -od -b -x ./BitcoinPrivateDesktopWallet.app/Contents/btcpd \
+                    -x ./BitcoinPrivateDesktopWallet.app/Contents/btcp-cli \
+                    -d ./BitcoinPrivateDesktopWallet.app/Contents/libs \
                     -p @executable_path/libs
