@@ -422,10 +422,11 @@ extends WalletTabPanel
 		if (!installationObserver.isOnTestNet())
 		{
 			//TODO - BTCP
-			if (!(destinationAddress.startsWith("zz") ||
-					destinationAddress.startsWith("n1") ||
-					destinationAddress.startsWith("n2") ||
-					destinationAddress.startsWith("nx")))
+			if (!(destinationAddress.startsWith("zk") ||
+					destinationAddress.startsWith("b1") ||
+					destinationAddress.startsWith("b2") ||
+					destinationAddress.startsWith("b3") ||
+					destinationAddress.startsWith("bx")))
 			{
 				Object[] options = { "OK" };
 
@@ -433,7 +434,7 @@ extends WalletTabPanel
 						SendCashPanel.this.getRootPane().getParent(),
 						"The destination address to send BTCP to:\n" +
 								destinationAddress + "\n"+
-								"does not appear to be a valid BTCP address. BTCP addresses start with n1, nx or zz!",
+								"does not appear to be a valid BTCP address. BTCP addresses start with nb, bx or zk!",
 								"Destination Address Invalid",
 								JOptionPane.DEFAULT_OPTION,
 								JOptionPane.ERROR_MESSAGE,
