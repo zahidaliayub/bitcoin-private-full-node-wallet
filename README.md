@@ -1,6 +1,6 @@
 # [BitcoinPrivate](https://btcprivate.org/) Full-Node Desktop Wallet
 
-### Supports B and Z addresses. Soon, you can also import your private keys from Zclassic or Bitcoin.
+### Supports B and Z addresses. Read [here](https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/blob/master/claim-btcp.md) on how to claim your BTCP from Zclassic and/or Bitcoin.
 
 ### Download the latest release:
 https://github.com/BTCPrivate/bitcoin-private-full-node-wallet/releases
