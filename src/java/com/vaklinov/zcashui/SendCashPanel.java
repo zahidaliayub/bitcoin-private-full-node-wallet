@@ -424,6 +424,7 @@ extends WalletTabPanel
 			//TODO - BTCP
 			if (!(destinationAddress.startsWith("zz") ||
 					destinationAddress.startsWith("n1") ||
+					destinationAddress.startsWith("n2") ||
 					destinationAddress.startsWith("nx")))
 			{
 				Object[] options = { "OK" };
