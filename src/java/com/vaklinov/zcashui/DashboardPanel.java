@@ -418,7 +418,6 @@ extends WalletTabPanel
 		}
 		DateFormat formatter = DateFormat.getDateTimeInstance();
 		String lastBlockDate = formatter.format(info.lastBlockDate);
-		
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("<html>");
 		stringBuilder.append("Daemon status: ");
@@ -431,7 +430,7 @@ extends WalletTabPanel
 			stringBuilder.append(info.numConnections);
 			stringBuilder.append(" connections </span>");
 		}else {
-			stringBuilder.append("Looking for peers..</span>");
+			stringBuilder.append("looking for peers...</span>");
 		}
 		stringBuilder.append(" - Blockchain synchronized: <span style=\"font-weight:bold\">");
 		stringBuilder.append(percentage);
