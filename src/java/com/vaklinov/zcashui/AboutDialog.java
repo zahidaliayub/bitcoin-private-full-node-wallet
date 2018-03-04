@@ -83,7 +83,7 @@ public class AboutDialog
 			+"\n\n"
 		    + "Niels Buekers <niels.buekers@gmail.com>"
 				+ "\n"
-			+ "Donate BTCP: TODO   "
+			+ "Donate BTCP: zkN1kCVEy7yNA8BrY8yZNYyLJKcMFs1nDALoXD9eTD3uSGn4jixv1pyYYoroEaKUyyhnkfC8gAm4wLMH2kx3WXgKduLo7eD"
 		    +"\n\n\n\n"
 		    +"Forked from the ZENCash wallet\n"
 		    + "Copyright (c) 2016-2017 Ivan Vaklinov <ivan@vaklinov.com> \n" +
