@@ -301,7 +301,6 @@ extends WalletTabPanel
 				try
 				{
 					DashboardPanel.this.updateStatusLabels();
-					Log.info("\n\nUPDATED\n\n");
 				} catch (Exception ex)
 				{
 					Log.error("Unexpected error: ", ex);
