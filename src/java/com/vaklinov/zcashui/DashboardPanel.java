@@ -409,7 +409,7 @@ extends WalletTabPanel
 		String lastBlockDate = formatter.format(info.lastBlockDate);
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("<html>");
-		stringBuilder.append("Status: ");
+		stringBuilder.append("Daemon status: ");
 		stringBuilder.append(daemonStatus);
 		stringBuilder.append(" - <span style=\"font-weight:bold;color:");
 		stringBuilder.append(netColor);
@@ -421,7 +421,7 @@ extends WalletTabPanel
 			stringBuilder.append(info.numConnections);
 			stringBuilder.append(" connections</span>");
 		}else {
-			stringBuilder.append("looking for peers...</span>");
+			stringBuilder.append("Looking for peers...</span>");
 		}
 		stringBuilder.append("<br/>Blockchain sync: <span style=\"font-weight:bold\">");
 		stringBuilder.append(percentage);
@@ -432,9 +432,9 @@ extends WalletTabPanel
 			stringBuilder.append(" Bitcoin Private</span>");
 			stringBuilder.append(tick);
 		}
-		stringBuilder.append("<br/>(latest block: ");
+		stringBuilder.append("<br/>(Latest block: ");
 		stringBuilder.append(lastBlockDate );
-		stringBuilder.append(", height: ");
+		stringBuilder.append(", Height: ");
 		stringBuilder.append(info.lastBlockHeight.trim());
 		stringBuilder.append(")</span>");
 		String text =
