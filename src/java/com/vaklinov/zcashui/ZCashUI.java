@@ -120,7 +120,7 @@ extends JFrame
 	public ZCashUI(StartupProgressDialog progressDialog)
 			throws IOException, InterruptedException, WalletCallException
 	{
-		super("Bitcoin Private Desktop GUI Wallet 1.0.0");
+		super("Bitcoin Private Desktop GUI Wallet 1.0.2");
 
 		if (progressDialog != null)
 		{
