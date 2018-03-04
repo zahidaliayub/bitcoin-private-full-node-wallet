@@ -137,7 +137,7 @@ extends WalletTabPanel
 		tempPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 1, 1));
 		transactionHeadingLabel.setFont(new Font("Helvetica", Font.BOLD, 19));
 		tempPanel.add(transactionHeadingLabel);
-		*/
+		 */
 		balanceStatusPanel.add(tempPanel, BorderLayout.CENTER);
 
 		balanceStatusPanel.add(walletBalanceLabel = new JLabel(), BorderLayout.EAST);
@@ -291,7 +291,7 @@ extends WalletTabPanel
 						return data;
 					}
 				},
-				this.errorReporter, 10000, true);
+				this.errorReporter, 5000, true);
 		this.threads.add(this.netInfoGatheringThread);
 
 		ActionListener alNetAndBlockchain = new ActionListener() {
@@ -301,6 +301,7 @@ extends WalletTabPanel
 				try
 				{
 					DashboardPanel.this.updateStatusLabels();
+					Log.info("\n\nUPDATED\n\n");
 				} catch (Exception ex)
 				{
 					Log.error("Unexpected error: ", ex);
@@ -400,7 +401,7 @@ extends WalletTabPanel
 			tick = "<span style=\"font-weight:bold;font-size:1.4em;color:green\">" + tickSymbol + "</span>";
 		}
 
-		String netColor = "red";
+		String netColor = "#808080";
 		if (info.numConnections > 0)
 		{
 			netColor = "#cc3300";
@@ -417,7 +418,7 @@ extends WalletTabPanel
 		}
 		DateFormat formatter = DateFormat.getDateTimeInstance();
 		String lastBlockDate = formatter.format(info.lastBlockDate);
-
+		
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("<html>");
 		stringBuilder.append("Daemon status: ");
@@ -426,14 +427,20 @@ extends WalletTabPanel
 		stringBuilder.append("<span style=\"font-weight:bold;color:");
 		stringBuilder.append(netColor);
 		stringBuilder.append("\">");
-		stringBuilder.append(info.numConnections);
-		stringBuilder.append(" connections </span>");
+		if(info.numConnections > 0) {
+			stringBuilder.append(info.numConnections);
+			stringBuilder.append(" connections </span>");
+		}else {
+			stringBuilder.append("Looking for peers..</span>");
+		}
 		stringBuilder.append(" - Blockchain synchronized: <span style=\"font-weight:bold\">");
 		stringBuilder.append(percentage);
 		stringBuilder.append("%</span>");
 		stringBuilder.append(tick);
 		stringBuilder.append(" <span style=\"font-size:0.8em\"> (latest block: ");
 		stringBuilder.append(lastBlockDate );
+		stringBuilder.append(" <span style=\"font-size:0.8em\"> (blockheight: ");
+		stringBuilder.append(info.lastBlockHeight);
 		stringBuilder.append(")</span>");
 		String text =
 				stringBuilder.toString();
@@ -475,7 +482,7 @@ extends WalletTabPanel
 						privateUCBalance + " BTCP </span><br/> " +
 						"<span style=\"font-weight:bold;" + color3 + "\">Total: " +
 						totalUCBalance + " BTCP </span>"
-								+ "</p></html>";
+						+ "</p></html>";
 
 		this.walletBalanceLabel.setText(text);
 
