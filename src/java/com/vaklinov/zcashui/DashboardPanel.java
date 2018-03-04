@@ -438,7 +438,7 @@ extends WalletTabPanel
 		stringBuilder.append(tick);
 		stringBuilder.append(" <span style=\"font-size:0.8em\"> (latest block: ");
 		stringBuilder.append(lastBlockDate );
-		stringBuilder.append(" <span style=\"font-size:0.8em\"> (blockheight: ");
+		stringBuilder.append(" <span style=\"font-size:0.8em\"> blockheight: ");
 		stringBuilder.append(info.lastBlockHeight);
 		stringBuilder.append(")</span>");
 		String text =
